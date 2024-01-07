@@ -1,0 +1,50 @@
+// Interface que representa um celular
+public interface ICelular
+{
+    // Retorna a marca do celular
+    string Marca { get; }
+
+    // Retorna o modelo do celular
+    string Modelo { get; }
+
+    // Retorna o nível de bateria do celular
+    int NivelDeBateria { get; }
+
+    // Descarrega a bateria em uma quantidade específica
+    void DescarregarBateria(int quantidade);
+}
+
+// Classe abstrata que representa um celular específico
+public abstract class Celular : ICelular
+{
+    // Construtor que inicializa as propriedades do celular
+    public Celular(string marca, string modelo, int nivelDeBateria)
+    {
+        Marca = marca;
+        Modelo = modelo;
+        NivelDeBateria = nivelDeBateria;
+    }
+
+    // Implementação das propriedades e métodos da interface ICelular
+    public string Marca { get; }
+    public string Modelo { get; }
+    public int NivelDeBateria { get; private set; }
+
+    public void DescarregarBateria(int quantidade)
+    {
+        NivelDeBateria -= quantidade;
+    }
+}
+
+// Exemplo de um celular específico
+public class CelularIPhone : Celular
+{
+    // Construtor que inicializa o celular
+    public CelularIPhone() : base("Apple", "iPhone 12", 100) { }
+
+    // Método que exibe a marca do celular
+    public void ExibirMarca()
+    {
+        Console.WriteLine("Este é um " + Marca);
+    }
+}
